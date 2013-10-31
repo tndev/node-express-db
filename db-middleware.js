@@ -97,3 +97,6 @@ function setup(options) {
 
     };
 }
+
+
+exports.setup = setup;
