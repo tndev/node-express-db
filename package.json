@@ -15,8 +15,13 @@
     "db"
   ],
   "author": "Till Niese",
+  "private" : true,
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tndev/node-express-db/issues"
+  },
+  "dependencies": {
+    "mysql": "~2.0.0-alpha9",
+    "when": "~2.5.1"
   }
 }
