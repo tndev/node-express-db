@@ -1,0 +1,22 @@
+{
+  "name": "node-express-db",
+  "version": "0.0.0",
+  "description": "Express middleware for db connection handling",
+  "main": "db-middleware.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tndev/node-express-db.git"
+  },
+  "keywords": [
+    "express",
+    "db"
+  ],
+  "author": "Till Niese",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tndev/node-express-db/issues"
+  }
+}
