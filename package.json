@@ -1,6 +1,6 @@
 {
   "name": "node-express-db",
-  "version": "0.0.0",
+  "version": "0.0.1-1",
   "description": "Express middleware for db connection handling",
   "main": "db-middleware.js",
   "scripts": {
@@ -22,6 +22,6 @@
   },
   "dependencies": {
     "mysql": "~2.0.0-alpha9",
-    "when": "~2.5.1"
+    "when": "~2.x"
   }
 }
