@@ -31,52 +31,7 @@ function getMysqlConnection(key, pool) {
         return txt;
       }.bind(this));
     };
-
-    connection.insert = function(table, values) {
-      var query = "INSERT INTO `" + table + "` SET ";
-
-      var list = [];
-      for (var key in values) {
-        if (Object.hasOwnProperty.call(values, key)) {
-          list.push("`" + key + "`=:" + key);
-
-        }
-      }
-
-      query += list.join(", ");
-
-      return this.query(query, values);
-    };
-
-
-    connection.update = function(table, values, condition, params) {
-      var query = "UPDATE `" + table + "` SET ";
-
-      var tmpParams = {};
-      var list = [];
-
-      for (var key in values) {
-        if (Object.hasOwnProperty.call(values, key)) {
-
-          tmpParams["updateval_" + key] = values[key];
-          list.push("`" + key + "`=:" + "updateval_" + key);
-
-        }
-      }
-
-      query += list.join(", ");
-
-      for (var key in params) {
-        if (Object.hasOwnProperty.call(params, key)) {
-
-          tmpParams[key] = params[key];
-        }
-      }
-
-      query += " WHERE " + condition;
-
-      return this.query(query, tmpParams);
-    };
+    
     d.resolve({
       key: key,
       connection: connection

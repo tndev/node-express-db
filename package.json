@@ -1,6 +1,6 @@
 {
   "name": "node-express-db",
-  "version": "0.0.1-1",
+  "version": "0.0.2",
   "description": "Express middleware for db connection handling",
   "main": "db-middleware.js",
   "scripts": {
@@ -15,13 +15,13 @@
     "db"
   ],
   "author": "Till Niese",
-  "private" : true,
+  "private": true,
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/tndev/node-express-db/issues"
   },
   "dependencies": {
-    "mysql": "~2.0.0-alpha9",
+    "mysql": "git://github.com/tndev/node-mysql.git",
     "when": "~2.x"
   }
 }
