@@ -1,6 +1,6 @@
 {
   "name": "node-express-db",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Express middleware for db connection handling",
   "main": "db-middleware.js",
   "scripts": {

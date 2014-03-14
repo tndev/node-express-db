@@ -19,11 +19,11 @@ function getMysqlConnection(key, pool) {
     //     and release if connection is closed (request is finished)
 
     connection.config.queryFormat = function(query, values) {
-      if (!values) {
+      if (!values || (values instanceof Array && values.length===0)) {
         return query;
       }
 
-      return query.replace(/\:(\w+)/g, function(txt, key) {
+      return query.replace(/\:([A-Za-z0-9_]+)/g, function(txt, key) {
         if (Object.hasOwnProperty.call(values, key)) {
           return this.escape(values[key]);
         }
