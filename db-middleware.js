@@ -1,44 +1,28 @@
 var mysql = require('mysql'),
-  when = require('when');
+    Promise = require('bluebird');
+require('mysql-additions').enableExperimentalFeatures();
 
 
 function getMysqlConnection(key, pool) {
-  var d = when.defer();
-  pool.getConnection(function(err, connection) {
+  
+  return pool.getConnectionAsync()
+  .then(function(connection) {
     //TODO store the connections by key
     //TODO what to do if connection aborded ??? we need to release some how ???
     //TODO This should be probably done at the appending to the request
 
-    if (err) {
-      d.reject(err);
-    }
     if (!connection) {
-      d.reject("no connection received");
+      throw new Error("no connection received");
     }
     //TODO this should not happen we need to test this at the assigning
     //     and release if connection is closed (request is finished)
 
-    connection.config.queryFormat = function(query, values) {
-      if (!values || (values instanceof Array && values.length===0)) {
-        return query;
-      }
-
-      return query.replace(/\:([A-Za-z0-9_]+)/g, function(txt, key) {
-        if (Object.hasOwnProperty.call(values, key)) {
-          return this.escape(values[key]);
-        }
-
-        return txt;
-      }.bind(this));
-    };
     
-    d.resolve({
+    return {
       key: key,
       connection: connection
-    });
+    };
   });
-
-  return d.promise;
 }
 
 function setup(options) {
@@ -64,7 +48,7 @@ function setup(options) {
       connections.push(pool.cb(pool.key, pool.pool));
     });
 
-    return when.all(connections);
+    return Promise.all(connections);
   }
 
   function releaseDbs() {
@@ -85,7 +69,8 @@ function setup(options) {
   return function(req, res, next) {
     var end = res.end;
 
-    when(getConnections()).then(function(dbs) {
+    getConnections()
+    .then(function(dbs) {
       req._dbs = {};
 
       //TODO check if request is alive and response was not send !!!!
