@@ -1,6 +1,6 @@
 {
   "name": "express-db",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Express middleware for db connection handling",
   "main": "db-middleware.js",
   "scripts": {
@@ -21,8 +21,8 @@
     "url": "https://github.com/tndev/node-express-db/issues"
   },
   "dependencies": {
-    "bluebird": "^2.3.11",
-    "mysql": "^2.5.3",
+    "bluebird": "^2.9.34",
+    "mysql": "^2.9.0",
     "mysql-additions": "git://github.com/tndev/node-mysql-additions"
   }
 }
