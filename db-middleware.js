@@ -1,6 +1,8 @@
 var mysql = require('mysql'),
     Promise = require('bluebird');
-require('mysql-additions').enableExperimentalFeatures();
+    
+
+
 
 
 function getMysqlConnection(key, pool) {
@@ -28,6 +30,11 @@ function getMysqlConnection(key, pool) {
 function setup(options) {
 
   var pools = [];
+
+  require('mysql-additions').enable({
+    experimental: true,
+    legacyPromise: options.legacyPromise || false
+  });
 
   for (var key in options.dbs) {
     if (options.dbs.hasOwnProperty(key)) {
